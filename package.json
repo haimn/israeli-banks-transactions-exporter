@@ -1,0 +1,9 @@
+{
+  "name": "transaction-scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "israeli-bank-scrapers": "^1.14.3"
+  }
+}

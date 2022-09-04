@@ -1,0 +1,49 @@
+[
+    {
+        "companyId": "leumi",
+        "enabled": true,
+        "credentials": {
+            "username": "username",
+            "password": "password"
+        },
+        "niceName": "בנק לאומי"
+    },
+    {
+        "companyId": "hapoalim",
+        "enabled": true,
+        "credentials": {
+            "userCode": "username",
+            "password": "password"
+        },
+        "niceName": "בנק הפועלים"
+    },
+    {
+        "companyId": "amex",
+        "enabled": true,
+        "credentials": {
+            "id": "333333333",
+            "card6Digits": "333333",
+            "password": "password"
+        },
+        "niceName": "אמריקן אקספרס"
+    },
+    {
+        "companyId": "isracard",
+        "enabled": true,
+        "credentials": {
+            "id": "333333333",
+            "card6Digits": "333333",
+            "password": "password"
+        },
+        "niceName": "ישראכרט"
+    },
+    {
+        "companyId": "max",
+        "enabled": true,
+        "credentials": {
+            "username": "example",
+            "password": "password"
+        },
+        "niceName": "לאומי קארד"
+    }
+]

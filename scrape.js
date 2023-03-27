@@ -12,7 +12,7 @@ async function scrape(options, credentials) {
       throw new Error(scrapeResult.errorMessage);
     }
   } catch(e) {
-    console.error(`CompanyId: ${options.companyId}: scraping failed for the following reason: ${e.message}`);
+    console.error(`${options.niceName}: scraping failed for the following reason: ${e.message}`);
     return [];
   }
 }

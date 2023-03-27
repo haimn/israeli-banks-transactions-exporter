@@ -115,6 +115,7 @@ async function addTransactions(transactions, accountId) {
         console.log(err);
     }
     );
+    return transactions;
 }
 
 module.exports.addTransactions = addTransactions;

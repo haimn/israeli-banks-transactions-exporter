@@ -2,7 +2,6 @@ const scrape = require('./scrape');
 const firefly = require('./fireflyOutput');
 const csvOutput = require('./csvOutput');
 const accounts = require('./accounts.json');
-const conf = require('./conf.json');
 var fs = require('fs');
 var parse = require('csv-parse/lib/sync');
 var lastSync = require('./lastSync.json');
@@ -10,6 +9,8 @@ var lastSync = require('./lastSync.json');
 var existingTransactions = {};
 
 function generateId(transaction) {
+  // replace last 4 chars of date with 0000
+  transaction.date = transaction.date.substring(0, transaction.date.length - 4) + '000Z';
   return `${transaction.date}-${transaction.description}-${transaction.identifier}-${transaction.chargedAmount}`
 }
 
@@ -31,25 +32,35 @@ accounts.forEach(account => {
 });
 
 (async () => {
-  await Promise.all(accounts.filter(account => account.enabled).map(account => scrape.scrape({
+  await Promise.all(accounts.filter(account => account.enabled).map(account => {
+    console.log(`Start scraping account ${account.niceName}`);
+    scrape.scrape({
+    niceName: account.niceName,
     companyId: account.companyId,
     startDate: addDays(new Date(lastSync[account.niceName]), -14),
     combineInstallments: false,
-    showBrowser: true
+    showBrowser: true,
+    defaultTimeout: 60000
   }, account.credentials)
-    .then(trans => trans.filter(transaction => transaction.status != 'pending' && !(generateId(transaction) in existingTransactions)))
+    .then(trans => {
+	    trans = trans.filter(transaction => transaction.status != 'pending' && !(generateId(transaction) in existingTransactions));
+    console.log(`Found ${trans.length} transaction for account ${account.niceName}`);
+    return trans;})
     .then(trans => csvOutput.writeToCsv(trans, `${account.niceName}.csv`))
     .then(trans => firefly.addTransactions(trans, account.niceName))
     .then(trans => {
-      lastSync[account.niceName] = new Date();
-      // store last account syncDate to file
-      fs.writeFile('lastSync.json', JSON.stringify(lastSync), { encoding: 'utf8', flag: 'w' }, (err) => {
-        if (err)
-          console.log(err);
-        else {
-          console.log("File written successfully\n");
-        }
-      });
+      if (trans.length > 0) {
+        lastSync[account.niceName] = new Date();
+        // store last account syncDate to file
+        fs.writeFile('lastSync.json', JSON.stringify(lastSync), { encoding: 'utf8', flag: 'w' }, (err) => {
+          if (err)
+            console.log(err);
+          else {
+            console.log("File written successfully\n");
+          }
+        });
+      }
       return trans;
-    })));
+    })
+  }));
 })();

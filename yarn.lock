@@ -430,10 +430,10 @@ is-arrayish@^0.2.1:
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
   integrity sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==
 
-israeli-bank-scrapers@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/israeli-bank-scrapers/-/israeli-bank-scrapers-3.6.0.tgz#35bbe669a2a80baced3d446d86796ce79abddb42"
-  integrity sha512-+pEIYJRQW5JjwDkCZgKXsvDWYUQSGRN+yUhk5AuM3YlM3MOtPl/oP8+LLEhLv0f/2r8XgoTx8dFAAghgzZ66Yw==
+israeli-bank-scrapers@^3.10.2:
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/israeli-bank-scrapers/-/israeli-bank-scrapers-3.10.2.tgz#8552f41780f01cbccde57724de4f96c9520d2c7c"
+  integrity sha512-YjCMljkiron5rJQ8DOd+THoPGSL4J4CFktqdhr1YNzZ52JtidxRNftxkPl6B/kx76t8xMraiIssuIxfQAaKSEA==
   dependencies:
     build-url "^2.0.0"
     core-js "^3.1.4"

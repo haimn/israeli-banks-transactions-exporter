@@ -9,7 +9,7 @@ async function scrape(options, credentials) {
       return scrapeResult.accounts.flatMap(account => account.txns);
     }
     else {
-      throw new Error(scrapeResult.errorMessage);
+      throw new Error(scrapeResult.errorType);
     }
   } catch(e) {
     console.error(`${options.niceName}: scraping failed for the following reason: ${e.message}`);

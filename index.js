@@ -40,7 +40,8 @@ accounts.forEach(account => {
     startDate: addDays(new Date(lastSync[account.niceName]), -14),
     combineInstallments: false,
     showBrowser: true,
-    defaultTimeout: 60000
+    defaultTimeout: 60000,
+    accountNumber: account.accountNumber,
   }, account.credentials)
     .then(trans => {
 	    trans = trans.filter(transaction => transaction.status != 'pending' && !(generateId(transaction) in existingTransactions));

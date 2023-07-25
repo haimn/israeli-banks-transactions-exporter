@@ -6,6 +6,7 @@
             "username": "username",
             "password": "password"
         },
+        "accountNumber": "000-00000_00",
         "niceName": "בנק לאומי"
     },
     {

@@ -6,7 +6,12 @@ async function scrape(options, credentials) {
     const scrapeResult = await scraper.scrape(credentials);
 
     if (scrapeResult.success) {
-      return scrapeResult.accounts.flatMap(account => account.txns);
+      if (!options.accountNumber) {
+        return scrapeResult.accounts.flatMap(account => account.txns);
+      }
+      else {
+        return scrapeResult.accounts.find(account => account.accountNumber == options.accountNumber).txns;
+      }
     }
     else {
       throw new Error(scrapeResult.errorType);
